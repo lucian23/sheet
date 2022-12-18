@@ -1,0 +1,11 @@
+docker run -dit -p 80:80 ubuntu:22.04
+apt update
+apt install nginx
+/etc/init.d/nginx start
+visit localhost
+apt install curl nano php-cli unzip php8.1-fpm php-mysql php-mbstring php-xml php-bcmath php-curl php8.1-gd
+cd ~
+curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+php /tmp/composer-setup.php --install-dir=/usr/local/bin/ --filename=composer
+apt install mysql-server
+/etc/init.d/mysql start

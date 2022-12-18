@@ -1,0 +1,92 @@
+Laravel Blade Snipets
+PHP Namespace Resolver
+
+###########################
+
+<form action="/register" method="POST" id="registration-form">
+@csrf
+
+class homePage extends Controller
+{
+    public function homePage () {
+        $animals = ['pisica', 'motan', 'motanel'];
+        return view('welcome', ['allAnimals' => $animals]);
+    }
+    public function aboutPage () {
+        return view('homepage');
+    }
+}
+
+h1>Afiseaza animalele</h1>
+    <ul>
+        @foreach ($allAnimals as $animal)
+        <li>{{$animal}}</li>
+        @endforeach
+    </ul>
+
+
+use App\http\Controllers\homePage;
+
+Route::get('/', [homePage::class, "homePage"]);
+Route::get('/about', [homePage::class, "aboutPage"]);
+
+Route::post('/register', [userRegister::class, "registerUser"]);
+class userRegister extends Controller
+{
+    public function registerUser (Request $request) {
+        $incomingFields = $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        User::create($incomingFields);
+        return 'test';
+    }
+}
+
+#######################
+<input name="password_confirmation"
+
+class userRegister extends Controller
+{
+    public function registerUser (Request $request) {
+        $incomingFields = $request->validate([
+            'username' => ['required', 'min:3', 'max:20', Rule::unique('users', 'username')],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => ['required', 'min:8', 'confirmed']
+        ]);
+        $incomingFields['password'] = bcrypt($incomingFields['password']);
+        User::create($incomingFields);
+        return 'test';
+    }
+}
+#######################
+views => components   => primacomponenta.blade.php  {{$slot}} </x-primacomponenta> continut <x-primacomponenta>
+
+php artisan migrate
+php artisan migrate:fresh
+
+php artisan make:migration add_favorite_color
+
+Schema::table('users', function($table) {
+$table->string('favoriteColor');
+});
+
+Schema::table('users', function($table) {
+$table->dropColumn('favoriteColor');
+});
+
+pentru afisarea erorii la introducere date dupa <input name="username" din formular
+@error('username')
+<p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+@enderror
+
+<input value="{{old('username')}}" name="username" id="username-register" class="form-control" type="text" placeholder="Pick a username" autocomplete="off" />
+
+######################################
+
+composer create-project laravel/laravel laraveller
+
+
+
+

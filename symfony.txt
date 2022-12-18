@@ -1,0 +1,7 @@
+symfony new pr1 --webapp
+symfony console make:entity Product
+symfony console make:crud
+docker-compose up -d
+symfony console make:migration
+symfony console doctrine:migrations:migrate
+symfony serve -d
